@@ -1,0 +1,37 @@
+[
+    {
+        "name":"Kinneir Dufort",
+        "URL":"https://www.kinneirdufort.com/join-us/'",
+        "CSS":".card__image"
+    },
+    {
+        "name":"OpenBionics",
+        "URL":"https://openbionics.com/jobs/",
+        "CSS":"h3.feature__heading.feature__heading--normal"
+    },
+    {
+        "name":"Crux Product Design",
+        "URL":"http://www.cruxproductdesign.com/careers",
+        "CSS":"h3"
+    },
+    {
+        "name":"British Antarctic Survey",
+        "URL":"https://www.bas.ac.uk/jobs/vacancies/",
+        "CSS":".gsMedium.margin-top-none"
+    },
+    {
+        "name":"Stryker",
+        "URL":"https://careers.stryker.com/en-US/search?facetcountry=gb&facetcategory=engineering",
+        "CSS":"a.primary-text-color.job-result-title"
+    },
+    {
+        "name":"LettusGrow",
+        "URL":"https://www.lettusgrow.com/careers",
+        "CSS":"#block-yui_3_17_2_1_1552559751945_24465 p strong"
+    },
+    {
+        "name":"Oxford Instruments Plasma",
+        "URL":"https://jobs.oxinst.com/search/?createNewAlert=false&q=&locationsearch=Bristol&optionsFacetsDD_location=&optionsFacetsDD_country=&optionsFacetsDD_customfield1=&optionsFacetsDD_lang=&optionsFacetsDD_customfield3=",
+        "CSS":".tiletitle h2"
+    }
+]

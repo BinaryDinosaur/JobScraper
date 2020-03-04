@@ -134,16 +134,11 @@ def YahWeh(msg_sub,msg_body): #Bruce Almighty Email (Send Email)
     return()
 
 ## Define Company Shortlist
-# Engineering
-KD = Company('Kinneir Dufort','https://www.kinneirdufort.com/join-us/', '.card__image')
-OpenBio = Company('OpenBionics','https://openbionics.com/jobs/', 'h3.feature__heading.feature__heading--normal')
-Crux = Company('Crux Product Design','http://www.cruxproductdesign.com/careers', 'h3')
-##Renishaw = Company('Renishaw','https://renishaw.wd3.myworkdayjobs.com/Renishaw','li.WBCR')
-# Adventure
-BAS = Company('British Antarctic Survey', 'https://www.bas.ac.uk/jobs/vacancies/', '.gsMedium.margin-top-none')
-Stryker = Company('Stryker','https://careers.stryker.com/en-US/search?facetcountry=gb&facetcategory=engineering','a.primary-text-color.job-result-title')
-LettusGrow = Company('LettusGrow','https://www.lettusgrow.com/careers','#block-yui_3_17_2_1_1552559751945_24465 p strong')
-OxfordInstruments = Company('OxfordInstruments','https://jobs.oxinst.com/search/?createNewAlert=false&q=&locationsearch=Bristol&optionsFacetsDD_location=&optionsFacetsDD_country=&optionsFacetsDD_customfield1=&optionsFacetsDD_lang=&optionsFacetsDD_customfield3=','.tiletitle h2')
+with open("Companies.json") as f:
+    data=json.load(f)
+
+for Comp in data:
+    Company(Comp["name"],Comp["URL"],Comp["CSS"])
 # Get New Jobs
 for Company in Company.registry:
     Company.Jobs = WebScrape(Company)
@@ -155,9 +150,10 @@ for Company in Company.registry:
     newJobDictList.append(Dict)
 
 # Compare Jobs
+#newJobInfo = [] <- Use if Grad_Jobs.json is deleted
 newJobInfo = JobCompare(newJobDictList)
 print('\n')
-print(newJobInfo)
+#print(newJobInfo)
 if newJobInfo:
     numNewJob = len(newJobInfo)
     newJobSub = 'New Jobs @ '
@@ -178,3 +174,13 @@ else:
 # Saving to Json
 with open('Grad_Jobs.json', 'w') as f:
     json.dump(newJobDictList, f, indent=2) #Save newly created company jobs dictionary to .json for future comparision.
+
+
+######### Removed Companies List #######################
+'''
+    {
+        "name":"Renishaw",
+        "URL":"https://renishaw.wd3.myworkdayjobs.com/Renishaw",
+        "CSS":"li.WBCR"
+    },
+'''
