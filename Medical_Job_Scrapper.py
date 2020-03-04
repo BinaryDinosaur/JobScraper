@@ -24,8 +24,8 @@ from selenium.common.exceptions import TimeoutException
 # import tensorflow as tf
 # Engineering
 # Kinneir Dufort
-EMAIL_BIN = 'n'
-
+from webScrapePersonalInfo import emailAddress, emailPassword, webdriverPath
+EMAIL_BIN = 'y'
 
 class Company:
     registry = []
@@ -39,7 +39,7 @@ class Company:
 def JavaGen_WebPage(Comp):
     chromeOptions = webdriver.ChromeOptions()
     #chromeOptions.add_argument("headless")
-    driver = webdriver.Chrome(executable_path = r'C:/Users/lwsha/Downloads/chromedriver_win32/chromedriver.exe',options=chromeOptions)
+    driver = webdriver.Chrome(executable_path = webdriverPath,options=chromeOptions)
     driver.get(Comp.URL)
     delay = 10 # seconds
     try:
@@ -49,7 +49,7 @@ def JavaGen_WebPage(Comp):
         print("Loading took too much time!")
     return(driver.page_source)
 
-def WebScrape(Comp):
+def WebScrape(Comp): #Webscraping Function based on CSS Classes
     Comp_Req = Request(url=Comp.URL, headers=headers)
     if Comp.name == 'Renishaw':
         Comp_html = JavaGen_WebPage(Comp)
@@ -57,66 +57,36 @@ def WebScrape(Comp):
         Comp_html = urlopen(Comp_Req).read()
     Comp_soup = BeautifulSoup(Comp_html, 'lxml')
     Comp_Jobs_Raw = Comp_soup.select(Comp.Search)
+    #Remove Duplicates
+    compJobsUnique=list(set(Comp_Jobs_Raw)) 
     job_list = []
     print('\n--' + Comp.name + '--')
-    for i in Comp_Jobs_Raw:
-        job = i.get_text().strip()
+    for i in compJobsUnique:
+        if i.findAll('img'):
+            img = i.find('img', alt=True)
+            job = img['src']
+        else:
+            job = i.get_text().strip()
         job_list.append(job)
         print(job)
     return(job_list)
 
-
-# Define Companies
-# Engineering
-KD = Company('Kinneir Dufort','https://www.kinneirdufort.com/join-us/', '.card__title')
-OpenBio = Company('OpenBionics','https://openbionics.com/jobs/', 'h3.feature__heading.feature__heading--normal')
-Crux = Company('Crux Product Design','http://www.cruxproductdesign.com/careers', 'h3')
-#Renishaw = Company('Renishaw','https://renishaw.wd3.myworkdayjobs.com/Renishaw','.WI4Q.WKKY')
-# Adventure
-BAS = Company('British Antarctic Survey', 'https://www.bas.ac.uk/jobs/vacancies/', '.gsMedium.margin-top-none')
-Stryker = Company('Stryker','https://careers.stryker.com/en-US/search?facetcountry=gb&facetcategory=engineering','a.primary-text-color.job-result-title')
-
-
-# Get New Jobs
-for Company in Company.registry:
-    Company.Jobs = WebScrape(Company)
-# KD.Jobs = WebScrape(KD)
-# OpenBio.Jobs = WebScrape(OpenBio)
-# Crux.Jobs = WebScrape(Crux)
-# BAS.Jobs = WebScrape(BAS)
-# Renishaw.Jobs = WebScrape(Renishaw)
-
-# Convert Objects to Dictonary List
-newJobDictList = []
-for Company in Company.registry:
-    Dict = vars(Company)
-    del(Dict['Search'])
-    newJobDictList.append(Dict)
-# Save to File
-# with open('Medical_Scrapper_Jobs.csv', 'w') as Jobs_File:
-#     csv_writer = csv.writer(Jobs_File)
-#     csv_writer.writerow([KD.name, ",".join(KD.Jobs)])
-#     csv_writer.writerow([Crux.name, ",".join(Crux.Jobs)])
-
-# Compare Jobs
-with open('Grad_Jobs.json') as f:
-    oldJobDictList = json.load(f)
-# print(preJobDict)
-
-
-def JobCompare(newJobDictList, oldJobDictList):
+def JobCompare(newJobDictList): #Compare New and Old Jobs
+    #Open List of Previous Job Searches
+    with open('Grad_Jobs.json') as f:
+        oldJobDictList = json.load(f)
     # Get names of Companies
     newCompNameList = []
     oldCompNameList = []
     for Comp in newJobDictList:
-        newCompNameList.append(Comp['name'])
+        newCompNameList.append(Comp['name']) #Get list of new companies
     # print(newCompNameList)
     for Comp in oldJobDictList:
-        oldCompNameList.append(Comp['name'])
+        oldCompNameList.append(Comp['name']) #Get list of previous companies
     # print(oldCompNameList)
 
     # Compare File Companies and New Companies
-    comSet = set(newCompNameList) & set(oldCompNameList)
+    comSet = set(newCompNameList) & set(oldCompNameList) #Convert list to sets and add together to get all companies with no duplicates
     comLst = sorted(list(comSet))
     print('\n')
     print(comLst)
@@ -145,48 +115,66 @@ def JobCompare(newJobDictList, oldJobDictList):
             newJobInfo.append([comp_name,comp_URL,comp_new_jobs])       
     return(newJobInfo)
 
-# Run Function
-newJobInfo = JobCompare(newJobDictList, oldJobDictList)
+def YahWeh(msg_sub,msg_body): #Bruce Almighty Email (Send Email)
+    index = emailAddress.find('@') #Identify @ position in string
+    emailToAddress = emailAddress[:index] + '+python' + emailAddress[index:] #Adds +python to my email address so I can easily filter the messages in my inbox
+
+    msg = EmailMessage()
+    msg['Subject'] = msg_sub #Email Subject
+    msg['From'] = emailAddress #Email from
+    msg['To'] = emailToAddress #Email to
+
+    msg.set_content(msg_body) #Email Content
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(emailAddress, emailPassword)
+        smtp.send_message(msg)
+    
+    print('\nEmail Sent')
+    return()
+
+## Define Company Shortlist
+# Engineering
+KD = Company('Kinneir Dufort','https://www.kinneirdufort.com/join-us/', '.card__image')
+OpenBio = Company('OpenBionics','https://openbionics.com/jobs/', 'h3.feature__heading.feature__heading--normal')
+Crux = Company('Crux Product Design','http://www.cruxproductdesign.com/careers', 'h3')
+##Renishaw = Company('Renishaw','https://renishaw.wd3.myworkdayjobs.com/Renishaw','li.WBCR')
+# Adventure
+BAS = Company('British Antarctic Survey', 'https://www.bas.ac.uk/jobs/vacancies/', '.gsMedium.margin-top-none')
+Stryker = Company('Stryker','https://careers.stryker.com/en-US/search?facetcountry=gb&facetcategory=engineering','a.primary-text-color.job-result-title')
+LettusGrow = Company('LettusGrow','https://www.lettusgrow.com/careers','#block-yui_3_17_2_1_1552559751945_24465 p strong')
+OxfordInstruments = Company('OxfordInstruments','https://jobs.oxinst.com/search/?createNewAlert=false&q=&locationsearch=Bristol&optionsFacetsDD_location=&optionsFacetsDD_country=&optionsFacetsDD_customfield1=&optionsFacetsDD_lang=&optionsFacetsDD_customfield3=','.tiletitle h2')
+# Get New Jobs
+for Company in Company.registry:
+    Company.Jobs = WebScrape(Company)
+# Convert Objects to Dictonary List
+newJobDictList = []
+for Company in Company.registry:
+    Dict = vars(Company)
+    del(Dict['Search'])
+    newJobDictList.append(Dict)
+
+# Compare Jobs
+newJobInfo = JobCompare(newJobDictList)
 print('\n')
+print(newJobInfo)
 if newJobInfo:
     numNewJob = len(newJobInfo)
     newJobSub = 'New Jobs @ '
     newJobBody = ''
     for i in range(numNewJob):
-        if i == 0:
+        if i == 0: #Email Subject Structuring (if i==0 first company listing, elif i == numNewJob - 1 equals last company listing)
             newJobSub += newJobInfo[i][0]
         elif i == numNewJob-1:
             newJobSub += ' and ' + newJobInfo[i][0]
         else:
             newJobSub += ', ' + newJobInfo[i][0]
-        #newjobbody
+        #Email Body (Company Name, Website Link and all newly listed jobs)
         newJobBody += newJobInfo[i][0] + '\n' + newJobInfo[i][1] + '\n' + ', '.join(newJobInfo[i][2])  + '\n\n'
-    
-    def YahWeh(msg_sub,msg_body): #Bruce Almighty Email
-        EMAIL_ADDRESS = 'lwshaban@gmail.com'
-        EMAIL_PASSWORD = 'ojtvdrhrmiscqfnk'
-
-        msg = EmailMessage()
-        msg['Subject'] = msg_sub
-        msg['From'] = 'lwshaban@gmail.com'
-        msg['To'] = 'lwshaban+python@gmail.com'
-
-        msg.set_content(msg_body)
-
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-            smtp.send_message(msg)
-        
-        print('\nEmail Sent')
-        return()
-    if EMAIL_BIN == 'y':
-        YahWeh(newJobSub,newJobBody)
+    YahWeh(newJobSub,newJobBody) #Send Email
 else:
     print('\nNo New Jobs Found!')
-#numNewJob = len(newJobInfo)
-#print(newJobSub)
-#print(newJobBody)
 
 # Saving to Json
 with open('Grad_Jobs.json', 'w') as f:
-    json.dump(newJobDictList, f, indent=2)
+    json.dump(newJobDictList, f, indent=2) #Save newly created company jobs dictionary to .json for future comparision.

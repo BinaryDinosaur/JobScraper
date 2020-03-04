@@ -3,76 +3,119 @@
     "name": "Kinneir Dufort",
     "URL": "https://www.kinneirdufort.com/join-us/",
     "Jobs": [
-      "Head of Human Factors workatKD designingabetterworld",
-      "Recruiting Senior Digital Designer workatKD"
+      "https://www.kinneirdufort.com/wp-content/uploads/2019/10/Digital-Designer-1-610x440-c-center.jpg",
+      "https://www.kinneirdufort.com/wp-content/uploads/2019/10/Head-of-HF-2020-1-610x440-c-center.jpg"
     ]
   },
   {
     "name": "OpenBionics",
     "URL": "https://openbionics.com/jobs/",
     "Jobs": [
-      "Lead Web Developer (Full Stack) - 6 Month Contract"
+      "Business Development Manager (USA)",
+      "Clinical Manager (USA)"
     ]
   },
   {
     "name": "Crux Product Design",
     "URL": "http://www.cruxproductdesign.com/careers",
     "Jobs": [
+      "Senior Software Engineer",
       "Mechanical Engineer",
-      "Graduate Human Factors Engineer",
-      "Junior Usability Designer"
-    ]
-  },
-  {
-    "name": "Renishaw",
-    "URL": "https://renishaw.wd3.myworkdayjobs.com/Renishaw",
-    "Jobs": [
-      "Software Engineering Apprentice (Level 6)",
-      "Embedded Electronic Engineering Apprentice (Level 6)",
-      "Miskin Apprentice (Level 3)",
-      "Manufacturing Technician Apprentice (Level 3)"
+      "Project Manager"
     ]
   },
   {
     "name": "British Antarctic Survey",
     "URL": "https://www.bas.ac.uk/jobs/vacancies/",
     "Jobs": [
-      "Assistant Environmental Manager",
+      "Ice/Ocean Modeller",
+      "Field Guide",
+      "IT Engineer \u2013 Antarctica \u2013 Winter",
+      "Station General Assistant",
+      "Building Services Engineer (Mechanical)",
       "Health and Safety Manager",
-      "Business Change Manager \u2013 Future Antarctic Capability",
-      "Principal Ice and Ocean Scientists",
-      "Quantity Surveyor \u2013 Antarctic Infrastructure Modernisation Programme",
-      "Senior Project Manager \u2013 Rothera Modernisation",
-      "Fortran Code Developer \u2013 UK Climate Model",
-      "Ice Core Analytical Chemist",
-      "IT Engineer \u2013 UNIX",
-      "Office Service Co-Ordinator",
-      "Science Support and Project Administrator \u2013 Cambridge",
+      "Boating Officer \u2013 South Georgia",
+      "Vehicles Engineering Manager \u2013 Cambridge and Antarctica",
+      "Pilot \u2013 First Officer",
+      "Electrical Maintenance Technician \u2013 Summer Only \u2013 Antarctica",
+      "Carpenter/Builder \u2013 Antarctica",
+      "Mechanical Maintenance Technician \u2013 Winter \u2013 Antarctica",
+      "Chief Pilot / Deputy Chief Pilot",
+      "Chef \u2013 Summer",
+      "Estates Administrative Assistant",
+      "Marine Biologist",
+      "Chef \u2013 Winter",
+      "Building Surveyor",
+      "Tower Operations Supervisor",
+      "Boating Officer \u2013 Rothera \u2013 Winter",
+      "Atmospheric Chemistry Instrument Scientist",
+      "Mechanical Services Technician",
+      "Radio Officer",
+      "Boating Officer \u2013 Rothera \u2013 Summer",
+      "Stores Operative",
+      "Geological Collections Laboratory Assistant",
+      "Polar Operations Support Team",
+      "Physical Oceanographer",
       "Mobile Plant Mechanic \u2013 Antarctica",
+      "Data Scientist",
+      "Marine Assistant \u2013 Antarctica",
+      "Mechanical Maintenance Technician \u2013 Summer Only \u2013 Antarctica",
+      "Station Support Assistant \u2013 Antarctica",
+      "Deputy Facilities Engineer",
+      "Diesel Power Generation Technician: \u2013 Antarctica",
+      "Atmospheric Scientist \u2013 Cambridge and Antarctica",
+      "Electrical Maintenance Technician \u2013 Winter \u2013 Antarctica",
+      "Zoological Field Assistant \u2013 Antarctica",
       "Mobile Plant Operator \u2013 Antarctica",
-      "Vehicles Engineering Manager \u2013 Cambridge and Antarctica"
+      "Steel Erector \u2013 Antarctica",
+      "Electronics Engineer \u2013 Antarctica"
     ]
   },
   {
     "name": "Stryker",
     "URL": "https://careers.stryker.com/en-US/search?facetcountry=gb&facetcategory=engineering",
     "Jobs": [
-      "Quality Engineer",
-      "Senior Workshop Technician/CNC Machinist",
-      "Computer Vision Researcher",
-      "Design Engineer (Patient Specific Solutions)",
-      "Senior Electronic Test Engineer",
-      "Senior Engineer, Quality Assurance",
-      "Senior Manufacturing Engineer",
-      "R&D Algorithm Engineer",
-      "Engineer, Product Development - Patient-specific Solutions",
-      "Image Analysis Applications Engineer",
-      "Staff Engineer, Product Development",
+      "Senior Advanced Quality Engineer",
+      "Senior Engineer, Supplier Quality Compliance",
       "Senior Engineer, Quality-2",
-      "Senior Packaging Engineer - PSE",
-      "Quality Engineer (Fixed Term)",
+      "Computer Vision Researcher",
+      "Staff Engineer, Advanced Operations - MT",
+      "Staff Engineer, Advanced Operations - MT",
+      "R&D Algorithm Engineer",
+      "Quality Engineer",
+      "Implant Design Engineer",
+      "Co op R&D Software Enigneer (Industrial Placement)",
+      "Senior Electronic Test Engineer",
+      "Senior Workshop Technician/CNC Machinist"
+    ]
+  },
+  {
+    "name": "LettusGrow",
+    "URL": "https://www.lettusgrow.com/careers",
+    "Jobs": [
+      "Head of Operations:",
+      "Financial Director:"
+    ]
+  },
+  {
+    "name": "OxfordInstruments",
+    "URL": "https://jobs.oxinst.com/search/?createNewAlert=false&q=&locationsearch=Bristol&optionsFacetsDD_location=&optionsFacetsDD_country=&optionsFacetsDD_customfield1=&optionsFacetsDD_lang=&optionsFacetsDD_customfield3=",
+    "Jobs": [
+      "Planner",
       "Software Engineer",
-      "Engineer, Design Assurance PSS"
+      "Customer Solutions Manager EMEA",
+      "Electrical Engineer - RF",
+      "Mechanical Designer",
+      "Electrical Designer",
+      "Mechanical Designer",
+      "Applications Engineer",
+      "Interim Desktop and Technical Engineer",
+      "Technical Sales Support Engineer",
+      "Applications Group Manager",
+      "Customer Support Engineer",
+      "Software Development Manager",
+      "Customer Support Desk Engineer",
+      "Systems Engineering Manager"
     ]
   }
 ]
